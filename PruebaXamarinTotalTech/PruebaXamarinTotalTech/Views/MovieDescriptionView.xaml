@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#283646"
+             x:Class="PruebaXamarinTotalTech.Views.MovieDescriptionView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35*"></RowDefinition>
+                <RowDefinition Height="65*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Source="{Binding Poster}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
+            <Frame Padding="0" Grid.Row="1" BackgroundColor="#283646" ></Frame>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"></RowDefinition>
+                    
+                    <RowDefinition Height="40*"></RowDefinition>
+                    <RowDefinition Height="20*"></RowDefinition>
+                    <RowDefinition Height="20*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"></ColumnDefinition>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" 
+                   FontSize="20" 
+                   Margin="10"
+                   TextColor="White" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="StartAndExpand" 
+                   VerticalOptions="CenterAndExpand" 
+                   Text="{Binding Title}" >
+                </Label>
+                <Image Source="{Binding Raiting}" Margin="15" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" ></Image>
+                <Label Grid.Row="1" Text="{Binding Description}" FontSize="12" TextColor="White" Grid.ColumnSpan="2" Margin="15"  ></Label>
+                <CollectionView Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                
+                                ItemsSource="{Binding CastDataCollection, Mode=TwoWay}"
+                                SelectedItem="{Binding CurrentSelected}"
+                                SelectionChangedCommand="{Binding ViewDetailsTopCommand}"
+                                SelectionMode="Single"
+                                VerticalScrollBarVisibility="Never"
+                                HorizontalScrollBarVisibility="Never">
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="CenterAndExpand">
+                                <Label Text="No se encontraron resultados"
+                                           TextColor="White"
+                                       HorizontalOptions="Fill"
+                                       HorizontalTextAlignment="Center"
+                                       FontFamily="AlthacareBold"/>
+
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Grid WidthRequest="120" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="70*"></RowDefinition>
+                                        <RowDefinition Height="30*"></RowDefinition>
+                                        
+                                    </Grid.RowDefinitions>
+                                    <Frame HeightRequest="60" WidthRequest="60" Padding="0" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="0" >
+                                        <Image Source ="{Binding posterImage}" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Image>
+                                    </Frame>
+                                    <Label Text="{Binding title}" FontSize="12" Grid.Row="1" TextColor="White" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand"></Label>
+                                </Grid>
+
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="33*"></RowDefinition>
+                        <RowDefinition Height="33*"></RowDefinition>
+                        <RowDefinition Height="33*"></RowDefinition>
+                        
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"></ColumnDefinition>
+                        <ColumnDefinition Width="80*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Margin="15,0,0,0" TextColor="White" Text="Studio:"></Label>
+                    <Label Grid.Row="1" Margin="15,0,0,0" TextColor="White" Text="Genre:"></Label>
+                    <Label Grid.Row="2" Margin="15,0,0,0" TextColor="White" Text="Release:"></Label>
+                    <Label Grid.Row="0" TextColor="White" Text="{Binding Studio}" Grid.Column="1"></Label>
+                    <Label Grid.Row="1"  TextColor="White" Text="{Binding Genres}" Grid.Column="1"></Label>
+                    <Label Grid.Row="2"  TextColor="White" Text="{Binding Fecha}" Grid.Column="1"></Label>
+                    
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
